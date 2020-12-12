@@ -12,7 +12,7 @@ const proSettings =
 //   menu: {
 //     locale: false,
 //   },
-//   title: '单井拉油',
+//   title: '瑞景诚',
 //   pwa: false,
 //   iconfontUrl: '',
 //   footerRender:false,
@@ -27,7 +27,7 @@ const proSettings =
   "menu": {
     "locale": false
   },
-  "title": "单井拉油",
+  "title": "瑞景诚",
   "pwa": false,
   "iconfontUrl": "",
   "splitMenus": false,
