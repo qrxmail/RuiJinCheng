@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, InputNumber, Drawer, Button, Row, Col } from 'antd';
+import { Form, Input, Drawer, Button, Row, Col } from 'antd';
 import { drawWidth } from '../../common';
 
 // 表单项
@@ -12,10 +12,9 @@ const UpdateForm = (props) => {
     const [formVals, setFormVals] = useState({
         isAdd: props.values.pk == undefined ? true : false,
         pk: props.values.pk == undefined ? '' : props.values.pk,
-        company: props.values.company,
-        number: props.values.number,
-        volumn: props.values.volumn,
-        leadSealNumber: props.values.leadSealNumber,
+        name: props.values.name,
+        accountInvoice: props.values.accountInvoice,
+        accountPay: props.values.accountPay,
         remark: props.values.remark,
     });
 
@@ -52,8 +51,8 @@ const UpdateForm = (props) => {
                 <Row>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="company"
-                            label="运输公司"
+                            name="name"
+                            label="公司名称"
                             rules={[{ required: true, message: '请输入运输单位！' }]}
                         >
                             <Input placeholder="请输入" />
@@ -61,27 +60,18 @@ const UpdateForm = (props) => {
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="number"
-                            label="车牌号"
-                            rules={[{ required: true, message: '请输入车牌号！' }]}
+                            name="accountInvoice"
+                            label="开票账户"
+                            //rules={[{ required: true, message: '请输入司机！' }]}
                         >
                             <Input placeholder="请输入" />
                         </FormItem>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="volumn"
-                            label="容量"
-                            rules={[{ required: true, message: '请输入容量！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="leadSealNumber"
-                            label="铅封号"
-                            rules={[{ required: true, message: '请输入铅封号！' }]}
+                            name="accountPay"
+                            label="支出账户"
+                            //rules={[{ required: true, message: '请输入司机！' }]}
                         >
                             <Input placeholder="请输入" />
                         </FormItem>
@@ -125,10 +115,9 @@ const UpdateForm = (props) => {
                 size='small'
                 initialValues={{
                     pk: formVals.pk,
-                    company: formVals.company,
-                    number: formVals.number,
-                    volumn: formVals.volumn,
-                    leadSealNumber: formVals.leadSealNumber,
+                    name: formVals.name,
+                    accountInvoice: formVals.accountInvoice,
+                    accountPay: formVals.accountPay,
                     remark: formVals.remark,
                 }}
             >

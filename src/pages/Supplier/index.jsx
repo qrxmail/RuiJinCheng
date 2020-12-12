@@ -85,18 +85,28 @@ const TableList = (props) => {
       valueType: "index",
     },
     {
-      title: "所属单位",
-      dataIndex: "branch",
+      title: "名称",
+      dataIndex: "name",
       hideInSearch: true,
     },
     {
-      title: "管理区",
-      dataIndex: "district",
+      title: "注册资金",
+      dataIndex: "registeredCapital",
+      hideInSearch: true,
+    },
+    {
+      title: "注册地址",
+      dataIndex: "registeredAddress",
       sorter: true,
     },
     {
-      title: "站名",
-      dataIndex: "name",
+      title: "生产地址",
+      dataIndex: "productAddress",
+      sorter: true,
+    },
+    {
+      title: "负责人",
+      dataIndex: "responseUser",
       sorter: true,
       // 打开详情页面
       render: (dom, entity) => {
@@ -109,63 +119,18 @@ const TableList = (props) => {
       }
     },
     {
-      title: "PLC IP",
-      dataIndex: "plcip",
+      title: "联系电话",
+      dataIndex: "phone",
       hideInSearch: true,
     },
     {
-      title: "HMI IP",
-      dataIndex: "hmiip",
+      title: "邮箱",
+      dataIndex: "email",
       hideInSearch: true,
     },
     {
-      title: '单位体积(1cm)',
-      children: [
-        {
-          title: "单位体积",
-          dataIndex: "volumnPer1cm",
-          hideInSearch: true,
-        },
-        {
-          title: "校正系数",
-          dataIndex: "levelCalcFactor",
-          hideInSearch: true,
-        },
-        {
-          title: "偏差",
-          dataIndex: "levelCalcOffset",
-          hideInSearch: true,
-        },
-      ],
-    },
-    {
-      title: '装油泵额定流量(m3/h)',
-      children: [
-        {
-          title: "装油泵额定流量",
-          dataIndex: "pumpRatedFlow",
-          hideInSearch: true,
-        },
-        {
-          title: "校正系数",
-          dataIndex: "pumpCalcFactor",
-          hideInSearch: true,
-        },
-        {
-          title: "偏差",
-          dataIndex: "pumpCalcOffset",
-          hideInSearch: true,
-        },
-      ],
-    },
-    {
-      title: "经度",
-      dataIndex: "longitude",
-      hideInSearch: true,
-    },
-    {
-      title: "纬度",
-      dataIndex: "latitude",
+      title: "主营业务",
+      dataIndex: "mainBusiness",
       hideInSearch: true,
     },
     {

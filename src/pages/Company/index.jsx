@@ -83,13 +83,18 @@ const TableList = (props) => {
       valueType: "index",
     },
     {
-      title: "运输公司",
-      dataIndex: "company",
+      title: "公司名称",
+      dataIndex: "name",
       sorter: true,
     },
     {
-      title: "司机",
-      dataIndex: "name",
+      title: "开票账户",
+      dataIndex: "accountInvoice",
+      sorter: true,
+    },
+    {
+      title: "支出账户",
+      dataIndex: "accountPay",
       sorter: true,
     },
     {

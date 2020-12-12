@@ -5,6 +5,7 @@ import { Button, Drawer, Divider, Modal, message } from "antd";
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import ProDescriptions from '@ant-design/pro-descriptions';
+import { routerRedux } from 'dva';
 
 import UpdateForm from './components/UpdateForm';
 import { query, update, add, remove } from './service';
@@ -73,7 +74,8 @@ const handleRemove = async (selectedRows) => {
 const TableList = (props) => {
   // 将当前用户加入到props中
   const {
-    currentUser
+    currentUser,
+    dispatch
   } = props;
 
   // 列表的列属性
@@ -83,28 +85,77 @@ const TableList = (props) => {
       valueType: "index",
     },
     {
-      title: "运输公司",
-      dataIndex: "company",
-      sorter: true,
-    },
-    {
-      title: "车牌号",
-      dataIndex: "number",
-      sorter: true,
-    },
-    {
-      title: "容量",
-      dataIndex: "volumn",
+      title: "供应商",
+      dataIndex: "supplierName",
       hideInSearch: true,
     },
     {
-      title: "铅封号",
-      dataIndex: "leadSealNumber",
+      title: "名称",
+      dataIndex: "name",
       sorter: true,
+      // 打开详情页面
+      render: (dom, entity) => {
+        return <a onClick={() => {
+          dispatch(routerRedux.push({
+            pathname: '/OilStationView',
+            query: { pk: entity.pk, branch: entity.branch, district: entity.district, name: entity.name }
+          }));
+        }}>{dom}</a>;
+      }
     },
     {
-      title: "备注",
-      dataIndex: "remark",
+      title: "参数",
+      dataIndex: "params",
+      hideInSearch: true,
+    },
+    {
+      title: "图片",
+      dataIndex: "picture",
+      hideInSearch: true,
+    },
+    {
+      title: "分类",
+      dataIndex: "type",
+      hideInSearch: true,
+    },
+    {
+      title: "品牌",
+      dataIndex: "brand",
+      hideInSearch: true,
+    },
+    {
+      title: "价格",
+      dataIndex: "price",
+      hideInSearch: true,
+    },
+    {
+      title: "库存",
+      dataIndex: "stock",
+      hideInSearch: true,
+    },
+    {
+      title: "京东价格",
+      dataIndex: "priceJd",
+      hideInSearch: true,
+    },
+    {
+      title: "京东链接",
+      dataIndex: "hrefJd",
+      hideInSearch: true,
+    },
+    {
+      title: "审核状态",
+      dataIndex: "state",
+      hideInSearch: true,
+    },
+    {
+      title: "税率",
+      dataIndex: "taxRate",
+      hideInSearch: true,
+    },
+    {
+      title: "税费",
+      dataIndex: "taxPrice",
       hideInSearch: true,
     },
     {
@@ -185,6 +236,7 @@ const TableList = (props) => {
           size: 'small',
         }}
         columns={columns}
+        bordered
         // 查询，列表数据请求
         request={(params, sorter, filter) => query({ ...params, sorter, filter })}
         rowSelection={{

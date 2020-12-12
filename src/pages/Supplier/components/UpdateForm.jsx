@@ -14,19 +14,19 @@ const UpdateForm = (props) => {
     const [formVals, setFormVals] = useState({
         isAdd: props.values.pk == undefined ? true : false,
         pk: props.values.pk == undefined ? '' : props.values.pk,
-        branch: props.values.branch,
         name: props.values.name,
-        district: props.values.district,
-        plcip: props.values.plcip,
-        hmiip: props.values.hmiip,
-        volumnPer1cm: props.values.volumnPer1cm,
-        levelCalcFactor: props.values.levelCalcFactor,
-        levelCalcOffset: props.values.levelCalcOffset,
-        pumpRatedFlow: props.values.pumpRatedFlow,
-        pumpCalcFactor: props.values.pumpCalcFactor,
-        pumpCalcOffset: props.values.pumpCalcOffset,
-        longitude: props.values.longitude,
-        latitude: props.values.latitude,
+        registeredCapital: props.values.registeredCapital,
+        registeredAddress: props.values.registeredAddress,
+        productAddress: props.values.productAddress,
+        responseUser: props.values.responseUser,
+        phone: props.values.phone,
+        email: props.values.email,
+        mainBusiness: props.values.mainBusiness,
+        accountName: props.values.accountName,
+        accountNo: props.values.accountNo,
+        bank: props.values.bank,
+        bankBranch: props.values.bankBranch,
+        accountType: props.values.accountType,
         remark: props.values.remark,
     });
 
@@ -76,119 +76,96 @@ const UpdateForm = (props) => {
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="district"
-                            label="管理区"
-                            rules={[{ required: true, message: '请输入管理区！' }]}
-                        >
-                            <Input placeholder="请输入" />
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
                             name="name"
-                            label="站名"
-                            rules={[{ required: true, message: '请输入站名！' }]}
+                            label="名称"
+                            rules={[{ required: true, message: '请输入名称！' }]}
                         >
                             <Input placeholder="请输入" />
                         </FormItem>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="plcip"
-                            label="PLC IP"
-                            rules={[{ required: true, message: '请输入PLC IP！' }]}
+                            name="registeredCapital"
+                            label="注册资金"
+                            rules={[{ required: true, message: '请输入注册资金！' }]}
                         >
                             <Input placeholder="请输入" />
                         </FormItem>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="hmiip"
-                            label="HMI IP"
-                            rules={[{ required: true, message: '请输入HMI IP！' }]}
-                        >
-                            <Input placeholder="请输入" />
-                        </FormItem>
-                    </Col>
-                    <Divider orientation="left" plain>
-                        单位体积(1cm)
-                    </Divider>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="volumnPer1cm"
-                            label="单位体积"
-                            rules={[{ required: true, message: '请输入单位体积！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="levelCalcFactor"
-                            label="校正系数"
-                            rules={[{ required: true, message: '请输入校正系数！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="levelCalcOffset"
-                            label="偏差"
-                            rules={[{ required: true, message: '请输入偏差！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Divider orientation="left" plain>
-                        装油泵额定流量(m3/h)
-                    </Divider>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="pumpRatedFlow"
-                            label="装油泵额定流量"
-                            rules={[{ required: true, message: '请输入装油泵额定流量！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="pumpCalcFactor"
-                            label="校正系数"
-                            rules={[{ required: true, message: '请输入校正系数！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="pumpCalcOffset"
-                            label="偏差"
-                            rules={[{ required: true, message: '请输入偏差！' }]}
-                        >
-                            <InputNumber min={0} max={100000} style={{ width: '100%' }} />
-                        </FormItem>
-                    </Col>
-                    <Divider orientation="left" plain>
-                        经纬度
-                    </Divider>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
-                            name="longitude"
-                            label="经度"
-                            rules={[{ required: true, message: '请输入经度！' }]}
+                            name="registeredAddress"
+                            label="注册地址"
+                            rules={[{ required: true, message: '请输入注册地址！' }]}
                         >
                             <Input placeholder="请输入" />
                         </FormItem>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="latitude"
-                            label="纬度"
-                            rules={[{ required: true, message: '请输入纬度！' }]}
+                            name="productAddress"
+                            label="生产地址"
+                            rules={[{ required: true, message: '请输入生产地址！' }]}
                         >
                             <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="responseUser"
+                            label="负责人"
+                            rules={[{ required: true, message: '请输入负责人！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="accountName"
+                            label="户名"
+                            //rules={[{ required: true, message: '请输入户名！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="accountNo"
+                            label="账户"
+                            //rules={[{ required: true, message: '请输入账户！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="bank"
+                            label="银行"
+                            //rules={[{ required: true, message: '请输入银行！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="bankBranch"
+                            label="银行支行"
+                            //rules={[{ required: true, message: '请输入银行支行！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="accountType"
+                            label="账户类型"
+                        //rules={[{ required: true, message: '请选择！' }]}
+                        >
+                            <Select style={{ width: '100%' }} showSearch >
+                                {factoryDic.map(name => (
+                                    <Option key={name} value={name}>{name}</Option>
+                                ))}
+                            </Select>
                         </FormItem>
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
@@ -230,19 +207,19 @@ const UpdateForm = (props) => {
                 size='small'
                 initialValues={{
                     pk: formVals.pk,
-                    branch: formVals.branch,
                     name: formVals.name,
-                    district: formVals.district,
-                    plcip: formVals.plcip,
-                    hmiip: formVals.hmiip,
-                    volumnPer1cm: formVals.volumnPer1cm,
-                    levelCalcFactor: formVals.levelCalcFactor,
-                    levelCalcOffset: formVals.levelCalcOffset,
-                    pumpRatedFlow: formVals.pumpRatedFlow,
-                    pumpCalcFactor: formVals.pumpCalcFactor,
-                    pumpCalcOffset: formVals.pumpCalcOffset,
-                    longitude: formVals.longitude,
-                    latitude: formVals.latitude,
+                    registeredCapital: formVals.registeredCapital,
+                    registeredAddress: formVals.registeredAddress,
+                    productAddress: formVals.productAddress,
+                    responseUser: formVals.responseUser,
+                    phone: formVals.phone,
+                    email: formVals.email,
+                    mainBusiness: formVals.mainBusiness,
+                    accountName: formVals.accountName,
+                    accountNo: formVals.accountNo,
+                    bank: formVals.bank,
+                    bankBranch: formVals.bankBranch,
+                    accountType: formVals.accountType,
                     remark: formVals.remark,
                 }}
             >

@@ -9,62 +9,26 @@ export const routerConfig =
       "component": "./Charts",
       "authority": [
           "admin",
-          "user",
-          "调度中心",
-          "管理区"
       ]
-  },
-  {
-      "key": "/OilStationView",
-      "path": "OilStationView",
-      "name": "站点浏览",
-      "icon": "smile",
-      "component": "./OilStationView",
-      "authority": [
-          "admin",
-          "user",
-          "调度中心",
-          "管理区"
-      ],
-      "hideInMenu": true
   },
   {
       "key": "/WorkTicketView",
       "path": "WorkTicketView",
-      "name": "工单详情",
+      "name": "订单详情",
       "icon": "smile",
       "component": "./WorkTicketView",
       "authority": [
           "admin",
-          "user",
-          "调度中心",
-          "管理区"
       ],
       "hideInMenu": true
   },
   {
-      "key": "/OilStation",
-      "path": "OilStation",
-      "name": "站点管理",
-      "icon": "smile",
-      "component": "./OilStation",
-      "authority": [
-          "admin",
-          "user",
-          "调度中心"
-      ]
-  },
-  {
       "key": "/WorkTicket",
       "path": "WorkTicket",
-      "name": "工单管理",
+      "name": "订单管理",
       "icon": "smile",
       "authority": [
           "admin",
-          "user",
-          "调度中心",
-          "卸油员",
-          "管理区"
       ],
       "routes": [
           {
@@ -75,16 +39,12 @@ export const routerConfig =
               "component": "./WorkTicket",
               "authority": [
                   "admin",
-                  "user",
-                  "调度中心",
-                  "卸油员",
-                  "管理区"
               ]
           },
           {
               "key": "/WorkTicketGrant",
               "path": "WorkTicketGrant",
-              "name": "待授权",
+              "name": "待采购",
               "icon": "smile",
               "component": "./WorkTicket",
               "authority": [
@@ -94,7 +54,7 @@ export const routerConfig =
           {
               "key": "/WorkTicketReceive",
               "path": "WorkTicketReceive",
-              "name": "待接单",
+              "name": "待付款",
               "icon": "smile",
               "component": "./WorkTicket",
               "authority": [
@@ -104,60 +64,64 @@ export const routerConfig =
           {
               "key": "/WorkTicketLoad",
               "path": "WorkTicketLoad",
-              "name": "待拉油",
+              "name": "物流查询",
               "icon": "smile",
               "component": "./WorkTicket",
               "authority": [
                   "admin",
-                  "user",
-                  "调度中心"
               ]
           },
           {
               "key": "/WorkTicketUnLoad",
               "path": "WorkTicketUnLoad",
-              "name": "待卸油",
+              "name": "待开票",
               "icon": "smile",
               "component": "./WorkTicket",
               "authority": [
                   "admin",
-                  "user",
-                  "卸油员"
-              ]
-          },
-          {
-              "key": "/WorkTicketReview",
-              "path": "WorkTicketReview",
-              "name": "待审批",
-              "icon": "smile",
-              "component": "./WorkTicket",
-              "authority": [
-                  "admin",
-                  "user",
-                  "管理区"
               ]
           }
       ]
   },
   {
-      "key": "/Driver",
-      "path": "Driver",
-      "name": "司机管理",
+    "key": "/Customer",
+    "path": "Customer",
+    "name": "客户管理",
+    "icon": "smile",
+    "component": "./Customer",
+    "authority": [
+        "admin",
+    ]  
+  },
+  {
+      "key": "/Supplier",
+      "path": "Supplier",
+      "name": "供应商管理",
       "icon": "smile",
-      "component": "./Driver",
+      "component": "./Supplier",
       "authority": [
           "admin"
       ]
   },
   {
-      "key": "/Truck",
-      "path": "Truck",
-      "name": "车辆管理",
+      "key": "/Goods",
+      "path": "Goods",
+      "name": "商品管理",
       "icon": "smile",
-      "component": "./Truck",
+      "component": "./Goods",
       "authority": [
           "admin"
       ]
+  },
+  {
+    "key": "/Company",
+    "path": "Company",
+    "name": "执行公司管理",
+    "icon": "smile",
+    "component": "./Company",
+    "authority": [
+        "admin"
+    ]
   },
   {
       "key": "/Reports",
@@ -167,10 +131,6 @@ export const routerConfig =
       "component": "./Reports",
       "authority": [
           "admin",
-          "user",
-          "调度中心",
-          "卸油员",
-          "管理区"
       ]
   },
   {

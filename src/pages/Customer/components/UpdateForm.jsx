@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Drawer, Button, Row, Col } from 'antd';
+import { Form, Input, InputNumber, Drawer, Button, Row, Col } from 'antd';
 import { drawWidth } from '../../common';
 
 // 表单项
@@ -12,8 +12,12 @@ const UpdateForm = (props) => {
     const [formVals, setFormVals] = useState({
         isAdd: props.values.pk == undefined ? true : false,
         pk: props.values.pk == undefined ? '' : props.values.pk,
-        company: props.values.company,
         name: props.values.name,
+        taxNo: props.values.taxNo,
+        registeredAddress: props.values.registeredAddress,
+        phone: props.values.phone,
+        accountBank: props.values.accountBank,
+        BankNo: props.values.BankNo,
         remark: props.values.remark,
     });
 
@@ -50,8 +54,8 @@ const UpdateForm = (props) => {
                 <Row>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="company"
-                            label="运输单位"
+                            name="name"
+                            label="名称"
                             rules={[{ required: true, message: '请输入运输单位！' }]}
                         >
                             <Input placeholder="请输入" />
@@ -59,9 +63,45 @@ const UpdateForm = (props) => {
                     </Col>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="name"
-                            label="司机"
-                            rules={[{ required: true, message: '请输入司机！' }]}
+                            name="taxNo"
+                            label="税号"
+                            rules={[{ required: true, message: '请输入车牌号！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="registeredAddress"
+                            label="注册地址"
+                            rules={[{ required: true, message: '请输入车牌号！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="phone"
+                            label="电话"
+                            rules={[{ required: true, message: '请输入车牌号！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="accountBank"
+                            label="开户行"
+                            rules={[{ required: true, message: '请输入车牌号！' }]}
+                        >
+                            <Input placeholder="请输入" />
+                        </FormItem>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                        <FormItem
+                            name="BankNo"
+                            label="银行账号"
+                            rules={[{ required: true, message: '请输入车牌号！' }]}
                         >
                             <Input placeholder="请输入" />
                         </FormItem>
@@ -105,8 +145,12 @@ const UpdateForm = (props) => {
                 size='small'
                 initialValues={{
                     pk: formVals.pk,
-                    company: formVals.company,
                     name: formVals.name,
+                    taxNo: formVals.taxNo,
+                    registeredAddress: formVals.registeredAddress,
+                    phone: formVals.phone,
+                    accountBank: formVals.accountBank,
+                    BankNo: formVals.BankNo,
                     remark: formVals.remark,
                 }}
             >
