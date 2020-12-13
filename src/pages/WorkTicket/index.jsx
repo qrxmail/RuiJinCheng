@@ -7,9 +7,6 @@ import ProTable from '@ant-design/pro-table';
 import { routerRedux } from 'dva';
 
 import UpdateForm from './components/UpdateForm';
-import ReceiveForm from './components/ReceiveForm';
-import LoadForm from './components/LoadForm';
-import UnLoadForm from './components/UnLoadForm';
 import { query, update, add, remove, tovoid, receive, grant, load, unload, review } from './service';
 
 import '../Common.less';
@@ -445,13 +442,6 @@ const TableList = (props) => {
   // 新增、修改页面的标题
   const [modelTitle, setModelTitle] = useState("");
 
-  // 接单页面是否可见
-  const [receiveModalVisible, handleReceiveModalVisible] = useState(false);
-  // 拉油页面是否可见
-  const [loadModalVisible, handleLoadModalVisible] = useState(false);
-  // 卸油页面是否可见
-  const [unloadModalVisible, handleUnLoadModalVisible] = useState(false);
-
   const actionRef = useRef();
 
   // 绘制列表页面
@@ -544,79 +534,7 @@ const TableList = (props) => {
           values={formValues}
         />
       ) : null}
-
-      {/* 采购:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
-      {formValues && Object.keys(formValues).length && receiveModalVisible ? (
-        <ReceiveForm
-          title={modelTitle}
-          onSubmit={async (value) => {
-            const success = await handleOper(value);
-
-            if (success) {
-              handleReceiveModalVisible(false);
-              setFormValues({});
-              if (actionRef.current) {
-                actionRef.current.reload();
-              }
-            }
-          }}
-          onCancel={() => {
-            handleReceiveModalVisible(false);
-            setFormValues({});
-          }}
-          modalVisible={receiveModalVisible}
-          values={formValues}
-        />
-      ) : null}
-
-      {/* 付款:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
-      {formValues && Object.keys(formValues).length && loadModalVisible ? (
-        <LoadForm
-          title={modelTitle}
-          onSubmit={async (value) => {
-            const success = await handleOper(value);
-
-            if (success) {
-              handleLoadModalVisible(false);
-              setFormValues({});
-              if (actionRef.current) {
-                actionRef.current.reload();
-              }
-            }
-          }}
-          onCancel={() => {
-            handleLoadModalVisible(false);
-            setFormValues({});
-          }}
-          modalVisible={loadModalVisible}
-          values={formValues}
-        />
-      ) : null}
-
-      {/* 开票:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
-      {formValues && Object.keys(formValues).length && unloadModalVisible ? (
-        <UnLoadForm
-          title={modelTitle}
-          onSubmit={async (value) => {
-            const success = await handleOper(value);
-
-            if (success) {
-              handleUnLoadModalVisible(false);
-              setFormValues({});
-              if (actionRef.current) {
-                actionRef.current.reload();
-              }
-            }
-          }}
-          onCancel={() => {
-            handleUnLoadModalVisible(false);
-            setFormValues({});
-          }}
-          modalVisible={unloadModalVisible}
-          values={formValues}
-        />
-      ) : null}
-
+      
     </PageContainer>
   );
 };
