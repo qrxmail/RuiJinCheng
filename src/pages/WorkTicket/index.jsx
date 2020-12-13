@@ -165,7 +165,7 @@ const TableList = (props) => {
       valueType: "index",
     },
     {
-      title: "工单编号",
+      title: "订单编号",
       dataIndex: "serialNumber",
       sorter: true,
       // 打开详情页面
@@ -179,51 +179,88 @@ const TableList = (props) => {
       }
     },
     {
-      title: "铅封号",
-      dataIndex: "subSerialNumber",
+      title: "销售人",
+      dataIndex: "saler",
       sorter: true,
     },
     {
-      title: "创建人",
-      dataIndex: "createUser",
+      title: "客户名称",
+      dataIndex: "customerName",
       sorter: true,
     },
     {
-      title: "创建时间",
-      dataIndex: "createTime",
+      title: "开单日期",
+      dataIndex: "saleDate",
       valueType: "dateTime",
       sorter: true,
     },
     {
-      title: "装油站",
-      dataIndex: "loadStationName",
+      title: "交货日期",
+      dataIndex: "deliveryDate",
+      valueType: "date",
+      sorter: true,
     },
     {
-      title: "卸油站",
-      dataIndex: "unloadStationName",
+      title: "商品名称",
+      dataIndex: "goodsName",
+      sorter: true,
     },
     {
-      title: "车牌号",
-      dataIndex: "carNumber",
+      title: "规格型号",
+      dataIndex: "spec",
+      sorter: true,
     },
     {
-      title: "司机",
-      dataIndex: "driver",
+      title: "销售单价",
+      dataIndex: "priceSale",
+      sorter: true,
     },
     {
-      title: "拉油液量m³",
-      dataIndex: "oilLoaded",
-      hideInSearch: true,
+      title: "销售总价",
+      dataIndex: "priceSale",
+      sorter: true,
+    },
+    {
+      title: "采购人",
+      dataIndex: "buyer",
+    },
+    {
+      title: "采购日期",
+      dataIndex: "buyDate",
+      valueType: "date",
+      sorter: true,
+    },
+    {
+      title: "供应商",
+      dataIndex: "supplierName",
+    },
+    {
+      title: "采购单价",
+      dataIndex: "priceBuy",
       valueType: "digit",
     },
     {
-      title: "收油液量m³",
-      dataIndex: "oilUnloaded",
-      hideInSearch: true,
+      title: "采购总价",
+      dataIndex: "priceBuy",
       valueType: "digit",
     },
     {
-      title: "误差率%",
+      title: "税费",
+      dataIndex: "priceTax",
+      valueType: "digit",
+    },
+    {
+      title: "运费",
+      dataIndex: "priceTransport",
+      valueType: "digit",
+    },
+    {
+      title: "总利润",
+      dataIndex: "",
+      valueType: "digit",
+    },
+    {
+      title: "利润率%",
       dataIndex: "error",
       hideInSearch: true,
       valueType: "percent",
@@ -240,27 +277,30 @@ const TableList = (props) => {
       }
     },
     {
-      title: "工单状态",
+      title: "快递公司",
+      dataIndex: "companyExpress",
+      hideInSearch: true,
+    },
+    {
+      title: "快递单号",
+      dataIndex: "expressNo",
+      hideInSearch: true,
+      valueType: "digit",
+    },
+    {
+      title: "订单状态",
       dataIndex: "status",
       valueEnum: {
-        '待接单': {
-          text: '待接单',
+        '待采购': {
+          text: '待采购',
           status: 'Processing',
         },
-        '待授权': {
-          text: '待授权',
+        '待付款': {
+          text: '待付款',
           status: 'Processing',
         },
-        '待拉油': {
-          text: '待拉油',
-          status: 'Processing',
-        },
-        '待卸油': {
-          text: '待卸油',
-          status: 'Processing',
-        },
-        '待审批': {
-          text: '待审批',
+        '待开票': {
+          text: '待开票',
           status: 'Processing',
         },
         '已完成': {
@@ -279,8 +319,8 @@ const TableList = (props) => {
       valueType: 'option',
       fixed: 'right',
       render: (_, entity) => {
-        let btnIsDisabledEdit = (entity.status !== '待接单' && entity.status !== '待授权');
-        let btnIsDisabledDel = (entity.status !== '待接单' && entity.status !== '待授权' && entity.status !== "已作废");
+        let btnIsDisabledEdit = (entity.status !== '待采购');
+        let btnIsDisabledDel = (entity.status !== '待采购' && entity.status !== '待付款' && entity.status !== "已作废");
         let btnIsDisabledVoid = (entity.status === "已作废" || entity.status === "已完成");
         let btnIsDisabledOper = (entity.status === "已作废" || entity.status === "已完成");
         return (
@@ -350,55 +390,38 @@ const TableList = (props) => {
               onClick={() => {
                 let success = false;
                 switch (entity.status) {
-                  case "待接单":
+                  case "待采购":
                     handleReceiveModalVisible(true);
                     setFormValues(entity);
-                    setModelTitle("接单");
+                    setModelTitle("采购");
                     break;
-                  case "待授权":
-                    confirm({
-                      title: '确认授权?',
-                      icon: <ExclamationCircleOutlined />,
-                      content: '',
-                      onOk() {
-                        success = handleOper(entity);
-                        if (success) {
-                          if (actionRef.current) {
-                            actionRef.current.reload();
-                          }
-                        }
-                      },
-                      onCancel() {
-                      },
-                    });
-                    break;
-                  case "待拉油":
+                  case "待付款":
                     handleLoadModalVisible(true);
                     setFormValues(entity);
-                    setModelTitle("拉油");
+                    setModelTitle("付款");
                     break;
-                  case "待卸油":
+                  case "待开票":
                     handleUnLoadModalVisible(true);
                     setFormValues(entity);
-                    setModelTitle("卸油");
+                    setModelTitle("开票");
                     break;
-                  case "待审批":
-                    confirm({
-                      title: '确认审批通过?',
-                      icon: <ExclamationCircleOutlined />,
-                      content: '',
-                      onOk() {
-                        success = handleOper(entity);
-                        if (success) {
-                          if (actionRef.current) {
-                            actionRef.current.reload();
-                          }
-                        }
-                      },
-                      onCancel() {
-                      },
-                    });
-                    break;
+                  // case "待审批":
+                  //   confirm({
+                  //     title: '确认审批通过?',
+                  //     icon: <ExclamationCircleOutlined />,
+                  //     content: '',
+                  //     onOk() {
+                  //       success = handleOper(entity);
+                  //       if (success) {
+                  //         if (actionRef.current) {
+                  //           actionRef.current.reload();
+                  //         }
+                  //       }
+                  //     },
+                  //     onCancel() {
+                  //     },
+                  //   });
+                  //   break;
                   default:
                     break;
                 }
@@ -522,7 +545,7 @@ const TableList = (props) => {
         />
       ) : null}
 
-      {/* 接单:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
+      {/* 采购:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
       {formValues && Object.keys(formValues).length && receiveModalVisible ? (
         <ReceiveForm
           title={modelTitle}
@@ -546,7 +569,7 @@ const TableList = (props) => {
         />
       ) : null}
 
-      {/* 拉油:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
+      {/* 付款:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
       {formValues && Object.keys(formValues).length && loadModalVisible ? (
         <LoadForm
           title={modelTitle}
@@ -570,7 +593,7 @@ const TableList = (props) => {
         />
       ) : null}
 
-      {/* 卸油:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
+      {/* 开票:需要先设置初始值，再展示页面，否则初始值设置不生效 */}
       {formValues && Object.keys(formValues).length && unloadModalVisible ? (
         <UnLoadForm
           title={modelTitle}

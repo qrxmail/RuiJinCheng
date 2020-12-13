@@ -2,23 +2,38 @@ import request from '@/utils/request';
 
 // 后台api接口
 export async function query(params) {
-  let queryStr = JSON.stringify(params);
-  return request('/api/workticket/query?queryStr='+queryStr);
+  // let queryStr = JSON.stringify(params);
+  // return request('/api/workticket/query?queryStr='+queryStr);
+  return request('/api/rule', {
+    params,
+  });
 }
 export async function remove(params) {
-  return request('/api/workticket/delete', {
+  // return request('/api/workticket/delete', {
+  //   method: 'POST',
+  //   data: { ...params},
+  // });
+  return request('/api/rule', {
     method: 'POST',
     data: { ...params},
   });
 }
 export async function add(params) {
-  return request('/api/workticket/add', {
+  // return request('/api/workticket/add', {
+  //   method: 'POST',
+  //   data: { ...params},
+  // });
+  return request('/api/rule', {
     method: 'POST',
     data: { ...params},
   });
 }
 export async function update(params) {
-  return request('/api/workticket/update', {
+  // return request('/api/workticket/update', {
+  //   method: 'POST',
+  //   data: { ...params},
+  // });
+  return request('/api/rule', {
     method: 'POST',
     data: { ...params},
   });

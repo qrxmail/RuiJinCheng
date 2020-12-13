@@ -63,19 +63,6 @@ const UpdateForm = (props) => {
                 <Row>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                         <FormItem
-                            name="branch"
-                            label="所属单位"
-                        //rules={[{ required: true, message: '请选择！' }]}
-                        >
-                            <Select style={{ width: '100%' }} showSearch >
-                                {factoryDic.map(name => (
-                                    <Option key={name} value={name}>{name}</Option>
-                                ))}
-                            </Select>
-                        </FormItem>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                        <FormItem
                             name="name"
                             label="名称"
                             rules={[{ required: true, message: '请输入名称！' }]}

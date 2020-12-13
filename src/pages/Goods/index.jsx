@@ -104,6 +104,11 @@ const TableList = (props) => {
       }
     },
     {
+      title: "规格型号",
+      dataIndex: "spec",
+      hideInSearch: true,
+    },
+    {
       title: "参数",
       dataIndex: "params",
       hideInSearch: true,
