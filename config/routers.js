@@ -12,6 +12,16 @@ export const routerConfig =
       ]
   },
   {
+    "key": "/Signalr",
+    "path": "Signalr",
+    "name": "Signalr",
+    "icon": "smile",
+    "component": "./Signalr",
+    "authority": [
+        "admin",
+    ]
+},
+  {
       "key": "/WorkTicketView",
       "path": "WorkTicketView",
       "name": "订单详情",

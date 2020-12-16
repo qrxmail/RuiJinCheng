@@ -9,6 +9,7 @@ import { routerRedux } from 'dva';
 
 import UpdateForm from './components/UpdateForm';
 import { query, update, add, remove } from './service';
+import { batchUpdate } from '../FileUpload/service';
 
 import '../Common.less';
 
@@ -16,7 +17,7 @@ import '../Common.less';
 const { confirm } = Modal;
 
 // 新增/修改
-const handleUpdate = async (fields) => {
+const handleUpdate = async (fields, fileList) => {
   const hide = message.loading('正在保存');
 
   // 将null和空字符串的属性去掉
@@ -34,6 +35,22 @@ const handleUpdate = async (fields) => {
     } else {
       result = await update(fields);
     }
+
+    // 文件信息更新：当有文件时，将文件数据补全，没有文件时，也需要传入tableName和dataId，用于更新文件表
+    if (fileList.length > 0) {
+      fileList = fileList.map(file => {
+        file.dataId = result.pk;
+        file.tableName = "Goods";
+        return file;
+      });
+    } else {
+      var file = {};
+      file.dataId = newObj.pk;
+      file.tableName = "Goods";
+      fileList.push(file);
+    }
+
+    await batchUpdate(fileList);
 
     hide();
     if (result.isSuccess) {
@@ -318,8 +335,8 @@ const TableList = (props) => {
       {formValues && Object.keys(formValues).length && updateModalVisible ? (
         <UpdateForm
           title={modelTitle}
-          onSubmit={async (value) => {
-            const success = await handleUpdate(value);
+          onSubmit={async (value, fileList) => {
+            const success = await handleUpdate(value, fileList);
 
             if (success) {
               handleUpdateModalVisible(false);

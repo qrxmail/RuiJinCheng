@@ -3,6 +3,7 @@ import { Form, Input, InputNumber, Drawer, Button, Select, Divider, Row, Col } f
 
 import { factoryDic } from '../../dic.config';
 import { drawWidth } from '../../common';
+import File from "../../FileUpload/index";
 
 // 表单项
 const FormItem = Form.Item;
@@ -10,6 +11,10 @@ const { TextArea } = Input;
 
 // 组件定义
 const UpdateForm = (props) => {
+    // 文件列表数据
+    let initList = [];
+    const [fileList, SetFileList] = useState(initList);
+
     // 用useState将列表页面的值赋给表单属性
     const [formVals, setFormVals] = useState({
         isAdd: props.values.pk == undefined ? true : false,
@@ -49,7 +54,7 @@ const UpdateForm = (props) => {
         setLoading(true);
 
         setFormVals({ ...formVals, ...fieldsValue });
-        await handleUpdate({ ...formVals, ...fieldsValue });
+        await handleUpdate({ ...formVals, ...fieldsValue }, fileList);
 
         setLoading(false);
     };
@@ -178,6 +183,10 @@ const UpdateForm = (props) => {
                             <TextArea rows={4} placeholder="请输入备注" />
                         </FormItem>
                     </Col>
+                    <Divider orientation="left" plain>
+                        图片
+                    </Divider>
+                    <File tableName={'ReportAbnormal'} dataId={formVals.pk} onSubmitFileList={(value) => { SetFileList(value) }} />
                 </Row>
             </>
         );
